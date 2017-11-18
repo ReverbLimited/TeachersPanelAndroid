@@ -1,0 +1,43 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.example.mdjahirulislam.youtubestyletabs.reverb.mdjahirulislam.youtubestyletabs.Activity.CalendarViewActivity">
+
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbarCalender"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+    <!--app:theme="@style/CalenderAppTheme"-->
+    <!--/>-->
+
+
+    <com.alamkanak.weekview.WeekView
+        android:id="@+id/weekView"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:columnGap="3dp"
+        app:dayBackgroundColor="#05000000"
+        app:eventTextColor="@android:color/white"
+        app:eventPadding="5dp"
+        app:showDistinctWeekendColor="@color/colorAccent"
+        app:eventMarginVertical="1dp"
+        app:headerColumnBackground="#ffffffff"
+        app:headerColumnPadding="8dp"
+        app:headerColumnTextColor="@color/toolbar_text"
+        app:headerRowBackgroundColor="@color/toolbar"
+        app:headerRowPadding="12dp"
+        app:hourHeight="35dp"
+        app:noOfVisibleDays="2"
+        app:textSize="12sp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"/>
+
+</RelativeLayout>

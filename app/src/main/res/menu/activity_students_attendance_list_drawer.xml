@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/attendance_present_today"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Present today"/>
+        <item
+            android:id="@+id/attendance_absent_today"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Absent today"/>
+        <item
+            android:id="@+id/attendance_highest"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Highest attendance"/>
+        <item
+            android:id="@+id/attendance_lowest"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Lowest attendance"/>
+    </group>
+
+
+
+</menu>

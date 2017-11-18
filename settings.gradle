@@ -1,0 +1,4 @@
+include ':app'
+include ':searchLibrary'
+include ':calendarLibrary'
+include ':tedpicker'

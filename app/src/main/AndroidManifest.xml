@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.mdjahirulislam.youtubestyletabs">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true">
+        <activity
+            android:name="reverb.smartstudy.teacher.Activity.MainActivity"
+            android:label="Smart Study">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="reverb.smartstudy.teacher.Activity.StudentsAttendanceListActivity"
+            android:label="Subject Name"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name="reverb.smartstudy.teacher.Activity.AttendanceActivity"
+            android:label="@string/title_activity_attendance_activity">
+        </activity>
+        <activity
+            android:name="reverb.smartstudy.teacher.Activity.BasicActivity"
+            android:label="@string/title_activity_calender_view"
+            android:theme="@style/CalenderAppTheme">
+        </activity>
+        <activity
+            android:name="reverb.smartstudy.teacher.Activity.AsynchronousActivity"
+            android:label="@string/title_activity_asynchronous"
+            android:theme="@style/CalenderAppTheme">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.PresentationActivity">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.news.NewsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name="reverb.smartstudy.teacher.Activity.news.NewsDetails"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <provider
+            android:name="reverb.smartstudy.teacher.contentprovider.RequestProvider"
+            android:authorities="reverb.smartstudy.news.db"
+            android:exported="false" />
+        <activity
+            android:name="com.gun0912.tedpicker.ImagePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_picker"
+            android:hardwareAccelerated="true"/>
+
+
+
+
+
+
+
+
+
+
+
+
+    </application>
+
+</manifest>
