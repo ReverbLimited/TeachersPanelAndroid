@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="com.android.support:support-compat-25.0.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/c400123b853d08a712ee5108ac2311e3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/c400123b853d08a712ee5108ac2311e3/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/c400123b853d08a712ee5108ac2311e3/jars/libs/internal_impl-25.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/wrapper/dists/gradle-3.0/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/2fd1efc5a5d3393f1f90699a9b149e79/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/wrapper/dists/gradle-3.0/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/2fd1efc5a5d3393f1f90699a9b149e79/jars/libs/internal_impl-25.0.0.jar!/" />
+      <root url="file://$USER_HOME$/wrapper/dists/gradle-3.0/caches/transforms-1/files-1.1/support-compat-25.0.0.aar/2fd1efc5a5d3393f1f90699a9b149e79/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-compat/25.0.0/support-compat-25.0.0-javadoc.jar!/" />

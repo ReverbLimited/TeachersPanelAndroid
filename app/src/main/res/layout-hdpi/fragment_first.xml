@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layoutMain"
-    tools:context="com.example.mdjahirulislam.youtubestyletabs.reverb.mdjahirulislam.youtubestyletabs.Fragment.FirstFragment">
+    >
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,6 +28,7 @@
             android:layout_height="160dp"
             android:layout_margin="5dp">
             <LinearLayout
+                android:id="@+id/homeFragmentClassTimeLL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -94,7 +95,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center_vertical"
-                android:text="News"
+                android:text="Home Work"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack"
                 android:textSize="30sp" />
@@ -133,7 +134,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:gravity="center_vertical"
-                        android:text="Presentation"
+                        android:text="News"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
                         android:textSize="25sp" />

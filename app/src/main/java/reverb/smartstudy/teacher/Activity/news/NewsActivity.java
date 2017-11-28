@@ -31,9 +31,9 @@ import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
 import reverb.smartstudy.teacher.database.NewsTableItems;
 import reverb.smartstudy.teacher.preference.SharedPref;
 
-import reverb.smartstudy.teacher.interfaces.NewsInterface;
+import reverb.smartstudy.teacher.interfaces.ConnectionApi;
 import reverb.smartstudy.teacher.model.News;
-import reverb.smartstudy.teacher.model.NewsRequest;
+import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.staticclasses.Functions;
 
 
@@ -137,12 +137,12 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        NewsInterface service = retrofit.create(NewsInterface.class);
-        NewsRequest newsRequest = new NewsRequest();
-        newsRequest.setUsername(SharedPref.getInstance(getApplicationContext()).getUsername());
-        newsRequest.setPassword(SharedPref.getInstance(getApplicationContext()).getPassword());
+        ConnectionApi service = retrofit.create(ConnectionApi.class);
+        UserRequest userRequest = new UserRequest();
+        userRequest.setUsername(SharedPref.getInstance(getApplicationContext()).getUsername());
+        userRequest.setPassword(SharedPref.getInstance(getApplicationContext()).getPassword());
 
-        Call<ArrayList<News>> newsRespionseCall = service.getnews(newsRequest);
+        Call<ArrayList<News>> newsRespionseCall = service.getNews( userRequest );
         newsRespionseCall.enqueue(new Callback<ArrayList<News>>() {
             @Override
             public void onResponse(Call<ArrayList<News>> call, Response<ArrayList<News>> response) {
@@ -156,6 +156,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
                 //CustomSqliteOpenHelper mSqliteOpenHelper = new CustomSqliteOpenHelper(c1);
           //      CustomSqliteOpenHelper.createTable();
                 int count=getContentResolver().delete(RequestProvider.urlNewsTable(), "1",null);
+                Log.d( TAG,"count 159 line ---> "+count );
                 for (int i = 0; i < news.size(); i++) {
                     ContentValues cv = new ContentValues();
                     cv.put(NewsTableItems.NAME, (news.get(i).getName() ));
@@ -218,7 +219,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 Cursor cursor = ((CustomCursorRecyclerViewAdapter) mRecyclerView.getAdapter()).getCursor();
 
-                //fill all exisitng in adapter
+                //fill all existing in adapter
                 MatrixCursor mx = new MatrixCursor(NewsTableItems.Columns);
                 fillMx(cursor, mx);
 

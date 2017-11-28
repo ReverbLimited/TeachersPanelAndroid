@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="reverb.smartstudy.teacher.Activity.homeWork.Activity.HomeWorkListActivity">
+
+    <TextView
+        android:id="@+id/noHomeWorkTV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="No Home Work Assign"
+        android:textColor="@android:color/holo_red_light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.09"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
+
+        <TextView
+            android:id="@+id/courseTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/standard_padding"
+            android:text="Home Work List"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/devisgrey"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/homeWorkListRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/nodataImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:layout_centerVertical="true"
+            android:src="@drawable/nodata"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/noserver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:layout_centerVertical="true"
+            android:src="@drawable/noserver"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

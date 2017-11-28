@@ -5,12 +5,24 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Created by HP on 9/30/2017.
  */
 
 public class Functions {
 
+    public static String BASE_URL = "http://smartstudy.com.bd/demo/";
+
+    public static Retrofit getRetrofit() {
+
+        return new Retrofit.Builder()
+                .baseUrl(Functions.BASE_URL)
+                .addConverterFactory( GsonConverterFactory.create())
+                .build();
+    }
 
 
     public static String convertTimeStamp(String inputDate) {

@@ -10,7 +10,7 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
     public static SQLiteDatabase db;
 
     public CustomSqliteOpenHelper(Context context) {
-        super(context, "newsdb.db", null, 1);
+        super(context, "SmartStudy.db", null, 2);
     }
 
     @Override
@@ -21,19 +21,21 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(NewsTableItems.CREATE_TABLE);
+        db.execSQL( CourseTableItems.CREATE_TABLE );
        this.db=db;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(NewsTableItems.DROP_TABLE);
+        db.execSQL( NewsTableItems.DROP_TABLE );
+        db.execSQL( CourseTableItems.DROP_TABLE );
         onCreate(db);
     }
 
     public static SQLiteDatabase createTable(){
        db.execSQL(NewsTableItems.CREATE_TABLE);
         return db;
-    };
+    }
 
     public static SQLiteDatabase createEventTable(){
         db.execSQL(" CREATE TABLE " + "events" +
@@ -48,6 +50,6 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
                 " description TEXT, " +
                 " image TEXT);");
         return db;
-    };
+    }
 
 }

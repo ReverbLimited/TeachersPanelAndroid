@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="reverb.smartstudy.teacher.Activity.homeWork.Activity.CourseListActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.09"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
+
+        <TextView
+            android:id="@+id/tvCourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/standard_padding"
+            android:text="Courses"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/devisgrey"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/coursesRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/nodataImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:layout_centerVertical="true"
+            android:src="@drawable/nodata"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/noserver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:layout_centerVertical="true"
+            android:src="@drawable/noserver"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+
+</LinearLayout>

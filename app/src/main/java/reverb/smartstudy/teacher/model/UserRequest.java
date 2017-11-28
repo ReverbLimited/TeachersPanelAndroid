@@ -4,7 +4,7 @@ package reverb.smartstudy.teacher.model;
  * Created by HP on 9/4/2017.
  */
 
-public class NewsRequest {
+public class UserRequest {
 
     private String username;
     private String password;

@@ -151,6 +151,5 @@
     <orderEntry type="module" module-name="calendarLibrary" />
     <orderEntry type="module" module-name="searchLibrary" />
     <orderEntry type="module" module-name="tedpicker" />
-    <orderEntry type="library" name="android-android-25" level="project" />
   </component>
 </module>

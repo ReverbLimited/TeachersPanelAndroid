@@ -7,6 +7,7 @@ package reverb.smartstudy.teacher.Adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class CustomCursorRecyclerViewAdapter extends CursorRecyclerViewAdapter {
         CustomViewHolder holder = (CustomViewHolder) viewHolder;
         cursor.moveToPosition(cursor.getPosition());
         holder.setData(cursor);
+        Log.d( "CustomCursor",String.valueOf( cursor.getColumnCount() ) );
 
     }
 

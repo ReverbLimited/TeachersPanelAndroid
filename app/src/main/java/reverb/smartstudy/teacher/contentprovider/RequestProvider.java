@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
 import reverb.smartstudy.teacher.database.NewsTableItems;
 
@@ -22,30 +23,43 @@ public class RequestProvider extends ContentProvider {
     private SQLiteOpenHelper mSqliteOpenHelper;
     private static final UriMatcher sUriMatcher;
 
-    public static final String AUTHORITY = "reverb.smartstudy.news.db";
+    public static final String AUTHORITY = "reverb.SmartStudy.db";
 
-    private static final int
-            TABLE_ITEMS = 0;
+    private static final int TABLE_ITEMS = 0;
 
     static {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        sUriMatcher.addURI("reverb.smartstudy.news.db", NewsTableItems.NEWS_TABLE_NAME + "/offset/" + "#", TABLE_ITEMS);
-        sUriMatcher.addURI("reverb.smartstudy.news.db", "events" + "/offset/" + "#", 1);
+        sUriMatcher.addURI(AUTHORITY, NewsTableItems.NEWS_TABLE_NAME + "/offset/" + "#", 0);
+        sUriMatcher.addURI(AUTHORITY, CourseTableItems.COURSE_TABLE_NAME + "/offset/" + "#", 1);
+        sUriMatcher.addURI(AUTHORITY, "events" + "/offset/" + "#", 2);
     }
 
     public static Uri urlForItems(int limit) {
-        Uri uri= Uri.parse("content://" + "reverb.smartstudy.news.db"+ "/" + NewsTableItems.NEWS_TABLE_NAME + "/offset/" + limit);
-        return Uri.parse("content://" + "reverb.smartstudy.news.db"+ "/" + NewsTableItems.NEWS_TABLE_NAME + "/offset/" + limit);
+        Uri uri= Uri.parse("content://" + AUTHORITY + "/" + NewsTableItems.NEWS_TABLE_NAME + "/offset/" + limit);
+        return uri;
     }
 
 
 
     public static Uri urlNewsTable() {
-        return Uri.parse("content://" +"reverb.smartstudy.news.db" + "/" + NewsTableItems.NEWS_TABLE_NAME);
+        return Uri.parse("content://" + AUTHORITY + "/" + NewsTableItems.NEWS_TABLE_NAME);
     }
 
+    //          jahir edit          //
+
+    public static Uri urlForCourseItems(int limit) {
+        Uri uri= Uri.parse("content://" + AUTHORITY + "/" + CourseTableItems.COURSE_TABLE_NAME + "/offset/" + limit);
+        return uri;
+    }
+
+    public static Uri urlCourseTable() {
+        return Uri.parse("content://" + AUTHORITY + "/" + CourseTableItems.COURSE_TABLE_NAME);
+    }
+
+    //          jahir edit End         //
+
     public static Uri urlForNews(int limit) {
-        return Uri.parse("content://" + "reverb.smartstudy.news.db" + "/" + "news" + "/offset/" + limit);
+        return Uri.parse("content://" + AUTHORITY + "/" + "news" + "/offset/" + limit);
     }
 
     @Override
@@ -65,8 +79,13 @@ public class RequestProvider extends ContentProvider {
         int i=sUriMatcher.match(uri);
 
         switch (sUriMatcher.match(uri)) {
-            case TABLE_ITEMS: {
+            case 0: {
                 sqb.setTables(NewsTableItems.NEWS_TABLE_NAME);
+                offset = uri.getLastPathSegment();
+                break;
+            }
+            case 1: {
+                sqb.setTables(CourseTableItems.COURSE_TABLE_NAME);
                 offset = uri.getLastPathSegment();
                 break;
             }
@@ -96,12 +115,14 @@ public class RequestProvider extends ContentProvider {
         String table = "";
         int i=sUriMatcher.match(uri);
         switch (sUriMatcher.match(uri)) {
-            case TABLE_ITEMS: {
+            case 0: {
                 table = NewsTableItems.NEWS_TABLE_NAME;
                 break;
+            }case 1: {
+                table = CourseTableItems.COURSE_TABLE_NAME;
+                break;
             }
-
-            case 1: {
+            case 2: {
                 table = "events";
                 break;
             }
@@ -120,10 +141,17 @@ public class RequestProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         String table = NewsTableItems.NEWS_TABLE_NAME;
-        if(selection!=null){
+        Log.d( TAG, "Delete uri is : "+uri );
+        if(uri.equals( urlNewsTable() )){
             int result = mSqliteOpenHelper.getWritableDatabase().delete(table, selection,selectionArgs);
+            Log.d( TAG, "CAll not null delete" );
+            return result;
+        }else if (uri.equals( urlCourseTable() )){
+            int result = mSqliteOpenHelper.getWritableDatabase().delete(CourseTableItems.COURSE_TABLE_NAME, selection,selectionArgs);
+            Log.d( TAG, "CAll 2 delete" );
             return result;
         }
+
 
 
       //  int result = mSqliteOpenHelper.getWritableDatabase().delete(table, selection,selectionArgs);
