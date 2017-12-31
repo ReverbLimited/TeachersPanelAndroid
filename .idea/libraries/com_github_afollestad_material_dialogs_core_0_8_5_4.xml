@@ -6,7 +6,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.afollestad.material-dialogs/core/0.8.5.4/d16d0725f6c2802011ccbc611e5e9dd46c386c72/core-0.8.5.4-sources.jar!/" />
+      <root url="jar://$USER_HOME$/wrapper/dists/gradle-3.0/caches/modules-2/files-2.1/com.github.afollestad.material-dialogs/core/0.8.5.4/d16d0725f6c2802011ccbc611e5e9dd46c386c72/core-0.8.5.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

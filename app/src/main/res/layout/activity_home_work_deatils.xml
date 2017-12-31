@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="reverb.smartstudy.teacher.Activity.homeWork.Activity.HomeWorkDetailsActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.09"
+        android:orientation="vertical"
+        >
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorWhite"
+        app:title="Home Work List"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/submittedCourseNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Course Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/submittedHWNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Home Work Name"
+                android:textColor="@color/colorGrey"
+                android:textSize="14sp"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorGrey"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Task List:"/>
+
+            <TextView
+                android:id="@+id/submittedTaskTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List of text here\nmore line here\nthree line"/>
+
+            <TextView
+                android:id="@+id/submittedDeadLineTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dead Line "
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submission List "
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorGrey"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/homeWorkSubmissionListRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/noHWSubmitTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Body Submit Home Work"
+                android:gravity="center"
+                android:textColor="@color/colorRed"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

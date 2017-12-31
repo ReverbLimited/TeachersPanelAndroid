@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,6 +23,15 @@ public class Functions {
                 .baseUrl(Functions.BASE_URL)
                 .addConverterFactory( GsonConverterFactory.create())
                 .build();
+    }
+
+    public static boolean isSamsung()
+    {
+        String manufacturer = android.os.Build.MANUFACTURER;
+        if (manufacturer.toLowerCase( Locale.ENGLISH).contains("samsung"))
+            return true;
+        else
+            return false;
     }
 
 

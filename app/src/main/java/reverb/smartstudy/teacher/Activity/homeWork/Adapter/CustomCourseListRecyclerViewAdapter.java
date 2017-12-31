@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
 import reverb.smartstudy.teacher.Adapter.CursorRecyclerViewAdapter;
-import reverb.smartstudy.teacher.ui.CourseListViewHolder;
+import reverb.smartstudy.teacher.ViewHolder.CourseListViewHolder;
 
 
 /**
@@ -23,8 +23,11 @@ import reverb.smartstudy.teacher.ui.CourseListViewHolder;
  */
 public class CustomCourseListRecyclerViewAdapter extends CursorRecyclerViewAdapter {
 
-    public CustomCourseListRecyclerViewAdapter(Context context, Cursor cursor) {
+    int from;
+
+    public CustomCourseListRecyclerViewAdapter(Context context, Cursor cursor, int from) {
         super(context, cursor);
+        this.from = from;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class CustomCourseListRecyclerViewAdapter extends CursorRecyclerViewAdapt
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.single_course_list_design, parent, false);
-        return new CourseListViewHolder( v );
+        return new CourseListViewHolder( v , from);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class CustomCourseListRecyclerViewAdapter extends CursorRecyclerViewAdapt
         CourseListViewHolder holder = (CourseListViewHolder) viewHolder;
         cursor.moveToPosition(cursor.getPosition());
         holder.setData(cursor);
-        Log.d( "courseAdapter ",String.valueOf( cursor.getPosition()) );
+        Log.d( "courseAdapter ","CustomCourseListRecyclerViewAdapter ------> "+String.valueOf( cursor.getPosition()) );
     }
 
     @Override

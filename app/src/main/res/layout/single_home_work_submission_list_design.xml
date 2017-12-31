@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="3dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/singleSubmittedStudentIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/student"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/singleSubmittedStudentNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/singleSubmittedStudentRollTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Roll: 10001"
+                android:textColor="@color/colorGrey"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/singleSubmittedStudentSubmittedDateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submitted Date: 28 Dec 2017"
+                android:textColor="@color/colorGrey"
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/singleSubmittedStudentStatusIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/hourglass"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrey"/>
+
+</LinearLayout>

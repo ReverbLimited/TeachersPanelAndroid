@@ -1,6 +1,7 @@
 package reverb.smartstudy.teacher.Activity.homeWork.Activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
@@ -22,6 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import reverb.smartstudy.teacher.Activity.homeWork.Adapter.CustomCourseListRecyclerViewAdapter;
+import reverb.smartstudy.teacher.Adapter.RecyclerTouchListener;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
@@ -45,8 +48,12 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
     private CustomSqliteOpenHelper mSqliteOpenHelper ;
     private ConnectionApi connectionApi;
     private Handler handlerToWait = new Handler();
-//    Context c1;
+    private int tagCounter = 1;
 
+    private int from;
+
+//    Context c1;
+    private Cursor myCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,38 +62,31 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         setContentView( R.layout.activity_course_list );
 //        c1=this;
 
+        from = getIntent().getIntExtra( "from",0 );
         connectionApi = Functions.getRetrofit().create(ConnectionApi.class);
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CustomCourseListRecyclerViewAdapter(this, null);
-
+        mAdapter = new CustomCourseListRecyclerViewAdapter(this, null, from);
         mRecyclerView = (RecyclerView) findViewById(R.id.coursesRV);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        //int itemsCountLocal = getItemsCountLocal();
-        // if (itemsCountLocal == 0) {
-        //    fillTestElements();
-        //}
         fetchCourses();
 
-//        shortToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+        getSupportLoaderManager().restartLoader(0, null, CourseListActivity.this);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
                 int maxPositions = layoutManager.getItemCount();
-                Log.d( TAG, "I am addOnScrollListener and lastVisibleItemPosition ---> " +lastVisibleItemPosition);
                 if (lastVisibleItemPosition == maxPositions - 1) { //self comment
                     //  if (lastVisibleItemPosition == maxPositions - 10) {
-                    if (loadingMore)
+                    if (loadingMore) {
                         return;
-
+                    }
                     loadingMore = true;
                     page++;
                     getSupportLoaderManager().restartLoader(0, null, CourseListActivity.this);
@@ -94,14 +94,15 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
+
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
-        Log.d( TAG, "I an onCreatedLoader "+id );
         switch (id) {
             case 0:
                 return new CursorLoader(this, RequestProvider.urlForCourseItems(offset * page), null, null, null, null);
+//                return null;
             default:
                 throw new IllegalArgumentException("no id handled!");
         }
@@ -109,10 +110,8 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.d( TAG, "I an onLoadFinished " );
         switch (loader.getId()) {
             case 0:
-                Log.d(TAG, "onLoadFinished: loading MORE");
                 //shortToast.setText("loading MORE " + page);
                 if(page!=0){
                     // shortToast.setText("loading more data");
@@ -158,6 +157,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
         while (data.moveToNext()) {
             mx.addRow(new Object[]{
                     data.getString(data.getColumnIndex(CourseTableItems._ID)),
+                    data.getString(data.getColumnIndex(CourseTableItems.COURSE_ID)),
                     data.getString(data.getColumnIndex(CourseTableItems.NAME)),
                     data.getString(data.getColumnIndex(CourseTableItems.CODE_NAME)),
                     data.getString(data.getColumnIndex(CourseTableItems.CLASS)),
@@ -166,7 +166,6 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
     }
 
     public void fetchCourses(){
-
 
 //        ConnectionApi service = retrofit.create(ConnectionApi.class);
         UserRequest userRequest = new UserRequest();
@@ -185,12 +184,10 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
                         List<CourseResponseModel.Datum> courses = body.getData();
                         Log.d(TAG, String.valueOf(courses.size()));
                         Uri a= RequestProvider.urlCourseTable();
-
                         int count=getContentResolver().delete(RequestProvider.urlCourseTable(), "1",null);
-                        Log.d( TAG,"count 187 line ---> "+count+" \n URI----> "+a );
                         for (int i = 0; i < courses.size(); i++) {
                             ContentValues cv = new ContentValues();
-
+                            cv.put(CourseTableItems.COURSE_ID, (courses.get(i).getId()));
                             cv.put(CourseTableItems.CREATED_AT,(Functions.convertTimeStamp(courses.get( i ).getCreatedAt())));
                             cv.put(CourseTableItems.UPDATED_AT,(courses.get(i).getUpdatedAt()));
                             cv.put(CourseTableItems.NAME, (courses.get(i).getName()));
@@ -199,6 +196,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 //                            cv.put(CourseTableItems.NAME, (courses.get(i).getName()));
 //                            cv.put(CourseTableItems.DESCRIPTION, (courses.get(i).getDescription()));
 //                            cv.put(CourseTableItems.IMAGE,(courses.get(i).getImage()));
+                            Log.d( TAG, "onResponse: course_id :" +courses.get( i ).getId());
                             getContentResolver().insert(RequestProvider.urlForCourseItems(0), cv);
                         }
 
@@ -213,25 +211,14 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
                 }
 
 
-                //SharedPref.getInstance(getApplicationContext()).setUsername(user.getUsername());
-                // Log.d("LoginActivity","On Response: "+statusCode);
-                // Log.d("LoginActivity","Load from SharedPref, username: "+SharedPref.getInstance(getApplicationContext()).getUsername());
-
-                //CustomSqliteOpenHelper mSqliteOpenHelper = new CustomSqliteOpenHelper(c1);
-                //      CustomSqliteOpenHelper.createTable();
-
-                // mAdapter.notify();
-                //mAdapter.notifyDataSetChanged();
-
-                //mAdapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onFailure(Call<CourseResponseModel> call, Throwable t) {
 
+                Log.d( TAG, "onCreate 7--->onFailure--->  tagCounter : " +tagCounter++);
                 Log.d("NewsActivity","On Response: Failed");
-                getSupportLoaderManager().restartLoader(0, null, CourseListActivity.this);
+//                getSupportLoaderManager().restartLoader(0, null, CourseListActivity.this);
 
             }
         });

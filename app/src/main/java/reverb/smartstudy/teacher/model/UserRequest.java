@@ -9,6 +9,11 @@ public class UserRequest {
     private String username;
     private String password;
 
+    private String courseID;
+    private String homeworkID;
+
+
+
     public String getPassword() {
         return password;
     }
@@ -27,5 +32,19 @@ public class UserRequest {
         this.username = username;
     }
 
+    public String getCourseID() {
+        return courseID;
+    }
 
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public String getHomeworkID() {
+        return homeworkID;
+    }
+
+    public void setHomeworkID(String homeworkID) {
+        this.homeworkID = homeworkID;
+    }
 }

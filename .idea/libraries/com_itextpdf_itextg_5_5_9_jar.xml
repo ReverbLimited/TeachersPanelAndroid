@@ -5,7 +5,7 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextg/5.5.9/fb58d86e3741593385b6f9648901b3e82228004c/itextg-5.5.9-sources.jar!/" />
+      <root url="jar://$USER_HOME$/wrapper/dists/gradle-3.0/caches/modules-2/files-2.1/com.itextpdf/itextg/5.5.9/fb58d86e3741593385b6f9648901b3e82228004c/itextg-5.5.9-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

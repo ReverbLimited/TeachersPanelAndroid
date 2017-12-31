@@ -10,7 +10,7 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
     public static SQLiteDatabase db;
 
     public CustomSqliteOpenHelper(Context context) {
-        super(context, "SmartStudy.db", null, 2);
+        super(context, "SmartStudy.db", null, 4);
     }
 
     @Override
@@ -20,8 +20,9 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(NewsTableItems.CREATE_TABLE);
+        db.execSQL( NewsTableItems.CREATE_TABLE);
         db.execSQL( CourseTableItems.CREATE_TABLE );
+        db.execSQL( HomeWorkListTableItems.CREATE_TABLE );
        this.db=db;
     }
 
@@ -29,27 +30,28 @@ public class CustomSqliteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL( NewsTableItems.DROP_TABLE );
         db.execSQL( CourseTableItems.DROP_TABLE );
+        db.execSQL( HomeWorkListTableItems.DROP_TABLE );
         onCreate(db);
     }
 
-    public static SQLiteDatabase createTable(){
-       db.execSQL(NewsTableItems.CREATE_TABLE);
-        return db;
-    }
-
-    public static SQLiteDatabase createEventTable(){
-        db.execSQL(" CREATE TABLE " + "events" +
-                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " created_at TEXT, " +
-                " updated_at TEXT, " +
-                " name TEXT, " +
-                " wholedayevent INTEGER, " +
-                " start TEXT, " +
-                " end TEXT, " +
-                " eventdate TEXT, " +
-                " description TEXT, " +
-                " image TEXT);");
-        return db;
-    }
+//    public static SQLiteDatabase createTable(){
+//       db.execSQL(NewsTableItems.CREATE_TABLE);
+//        return db;
+//    }
+//
+//    public static SQLiteDatabase createEventTable(){
+//        db.execSQL(" CREATE TABLE " + "events" +
+//                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                " created_at TEXT, " +
+//                " updated_at TEXT, " +
+//                " name TEXT, " +
+//                " wholedayevent INTEGER, " +
+//                " start TEXT, " +
+//                " end TEXT, " +
+//                " eventdate TEXT, " +
+//                " description TEXT, " +
+//                " image TEXT);");
+//        return db;
+//    }
 
 }

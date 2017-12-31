@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.LoaderManager;
@@ -29,10 +28,10 @@ import reverb.smartstudy.teacher.Adapter.CustomCursorRecyclerViewAdapter;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
 import reverb.smartstudy.teacher.database.NewsTableItems;
+import reverb.smartstudy.teacher.model.NewsResponseModel;
 import reverb.smartstudy.teacher.preference.SharedPref;
 
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
-import reverb.smartstudy.teacher.model.News;
 import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.staticclasses.Functions;
 
@@ -68,6 +67,8 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
        // if (itemsCountLocal == 0) {
         //    fillTestElements();
         //}
+
+        getSupportLoaderManager().restartLoader(0, null, NewsActivity.this);
         fetchNews();
 
         shortToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
@@ -142,23 +143,19 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
         userRequest.setUsername(SharedPref.getInstance(getApplicationContext()).getUsername());
         userRequest.setPassword(SharedPref.getInstance(getApplicationContext()).getPassword());
 
-        Call<ArrayList<News>> newsRespionseCall = service.getNews( userRequest );
-        newsRespionseCall.enqueue(new Callback<ArrayList<News>>() {
+        Call<ArrayList<NewsResponseModel>> newsResponseCall = service.getNews( userRequest );
+        newsResponseCall.enqueue(new Callback<ArrayList<NewsResponseModel>>() {
             @Override
-            public void onResponse(Call<ArrayList<News>> call, Response<ArrayList<News>> response) {
+            public void onResponse(Call<ArrayList<NewsResponseModel>> call, Response<ArrayList<NewsResponseModel>> response) {
                 int statusCode=response.code();
-                ArrayList<News> news=response.body();
+                ArrayList<NewsResponseModel> news=response.body();
                 Log.d("TestActivity", String.valueOf(statusCode));
-                //SharedPref.getInstance(getApplicationContext()).setUsername(user.getUsername());
-                // Log.d("LoginActivity","On Response: "+statusCode);
-                // Log.d("LoginActivity","Load from SharedPref, username: "+SharedPref.getInstance(getApplicationContext()).getUsername());
-                Uri a=RequestProvider.urlNewsTable();
-                //CustomSqliteOpenHelper mSqliteOpenHelper = new CustomSqliteOpenHelper(c1);
-          //      CustomSqliteOpenHelper.createTable();
-                int count=getContentResolver().delete(RequestProvider.urlNewsTable(), "1",null);
-                Log.d( TAG,"count 159 line ---> "+count );
+//                Uri a=RequestProvider.urlNewsTable();
+//                int count=getContentResolver().delete(RequestProvider.urlNewsTable(), "1",null);
+//                Log.d( TAG,"count 159 line ---> "+count );
                 for (int i = 0; i < news.size(); i++) {
                     ContentValues cv = new ContentValues();
+                    cv.put(NewsTableItems.NEWS_ID, (news.get(i).getNewsid() ));
                     cv.put(NewsTableItems.NAME, (news.get(i).getName() ));
                     cv.put(NewsTableItems.DESCRIPTION, (news.get(i).getDescription()));
                     cv.put(NewsTableItems.CREATED_AT,(Functions.convertTimeStamp(news.get(i).getCreated_at())));
@@ -174,10 +171,10 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
             }
 
             @Override
-            public void onFailure(Call<ArrayList<News>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<NewsResponseModel>> call, Throwable t) {
 
                 Log.d("NewsActivity","On Response: Failed");
-              getSupportLoaderManager().restartLoader(0, null, NewsActivity.this);
+//              getSupportLoaderManager().restartLoader(0, null, NewsActivity.this);
 
             }
         });
@@ -252,6 +249,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
         while (data.moveToNext()) {
             mx.addRow(new Object[]{
                     data.getString(data.getColumnIndex(NewsTableItems._ID)),
+                    data.getString(data.getColumnIndex(NewsTableItems.NEWS_ID)),
                     data.getString(data.getColumnIndex(NewsTableItems.NAME)),
                     data.getString(data.getColumnIndex(NewsTableItems.CREATED_AT)),
                     data.getString(data.getColumnIndex(NewsTableItems.DESCRIPTION)),

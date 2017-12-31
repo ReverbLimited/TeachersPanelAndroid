@@ -78,6 +78,14 @@
         </activity>
         <activity android:name="reverb.smartstudy.teacher.Activity.homeWork.Activity.HomeWorkListActivity">
         </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.homeWork.Activity.InsertHomeWorkActivity">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.homeWork.Activity.HomeWorkDetailsActivity">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.CoursesListActivity">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.CourseOperationActivity">
+        </activity>
     </application>
 
 </manifest>

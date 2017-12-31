@@ -15,6 +15,7 @@ import android.util.Log;
 
 import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
+import reverb.smartstudy.teacher.database.HomeWorkListTableItems;
 import reverb.smartstudy.teacher.database.NewsTableItems;
 
 public class RequestProvider extends ContentProvider {
@@ -32,6 +33,7 @@ public class RequestProvider extends ContentProvider {
         sUriMatcher.addURI(AUTHORITY, NewsTableItems.NEWS_TABLE_NAME + "/offset/" + "#", 0);
         sUriMatcher.addURI(AUTHORITY, CourseTableItems.COURSE_TABLE_NAME + "/offset/" + "#", 1);
         sUriMatcher.addURI(AUTHORITY, "events" + "/offset/" + "#", 2);
+        sUriMatcher.addURI(AUTHORITY, HomeWorkListTableItems.HW_TABLE_NAME + "/offset/" + "#", 3);
     }
 
     public static Uri urlForItems(int limit) {
@@ -54,6 +56,15 @@ public class RequestProvider extends ContentProvider {
 
     public static Uri urlCourseTable() {
         return Uri.parse("content://" + AUTHORITY + "/" + CourseTableItems.COURSE_TABLE_NAME);
+    }
+
+    public static Uri urlForHomeWorkListItems(int limit) {
+        Uri uri= Uri.parse("content://" + AUTHORITY + "/" + HomeWorkListTableItems.HW_TABLE_NAME  + "/offset/" + limit);
+        return uri;
+    }
+
+    public static Uri urlHomeWorkTable() {
+        return Uri.parse("content://" + AUTHORITY + "/" + HomeWorkListTableItems.HW_TABLE_NAME );
     }
 
     //          jahir edit End         //
@@ -86,6 +97,10 @@ public class RequestProvider extends ContentProvider {
             }
             case 1: {
                 sqb.setTables(CourseTableItems.COURSE_TABLE_NAME);
+                offset = uri.getLastPathSegment();
+                break;
+            }case 3: {
+                sqb.setTables(HomeWorkListTableItems.HW_TABLE_NAME);
                 offset = uri.getLastPathSegment();
                 break;
             }
@@ -125,13 +140,19 @@ public class RequestProvider extends ContentProvider {
             case 2: {
                 table = "events";
                 break;
+            }case 3: {
+                table = HomeWorkListTableItems.HW_TABLE_NAME;
+                break;
             }
         }
 
         long result = mSqliteOpenHelper.getWritableDatabase().insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
         if (result == -1) {
-            throw new SQLException("insert with conflict!");
+//            throw new SQLException("insert with conflict!");
+            Log.d( TAG, "insert with conflict!" );
+        }else {
+            Log.d( TAG, "insert: Successful" );
         }
 
         Uri retUri = ContentUris.withAppendedId(uri, result);

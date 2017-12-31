@@ -9,6 +9,7 @@ public class CourseTableItems {
 
 
     public static final String _ID = "_id";
+    public static final String COURSE_ID = "course_id";
     public static final String CREATED_AT = "created_at";
     public static final String UPDATED_AT = "updated_at";
     public static final String NAME = "name";
@@ -23,6 +24,7 @@ public class CourseTableItems {
     public static final String CREATE_TABLE =
             " CREATE TABLE " + COURSE_TABLE_NAME + " (" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COURSE_ID + " TEXT, " +
                     CREATED_AT + " TEXT, " +
                     UPDATED_AT + " TEXT, " +
                     NAME + " TEXT, " +
@@ -35,5 +37,5 @@ public class CourseTableItems {
                     CLASS+" TEXT );";
 
     public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + COURSE_TABLE_NAME;
-    public static String[] Columns = new String[]{_ID, NAME,CODE_NAME,CLASS};
+    public static String[] Columns = new String[]{_ID,COURSE_ID, NAME,CODE_NAME,CLASS};
 }

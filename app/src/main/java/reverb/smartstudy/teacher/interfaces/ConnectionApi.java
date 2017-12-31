@@ -1,7 +1,9 @@
 package reverb.smartstudy.teacher.interfaces;
 
 import reverb.smartstudy.teacher.model.CourseResponseModel;
-import reverb.smartstudy.teacher.model.News;
+import reverb.smartstudy.teacher.model.HomeWorkListPojoModel;
+import reverb.smartstudy.teacher.model.NewsResponseModel;
+import reverb.smartstudy.teacher.model.SubmittedHomeWorkResponseModel;
 import reverb.smartstudy.teacher.model.UserRequest;
 
 import java.util.ArrayList;
@@ -17,9 +19,15 @@ import retrofit2.http.POST;
 
 public interface ConnectionApi {
     @POST("api/news")
-    Call<ArrayList<News>> getNews(@Body UserRequest userRequest);
+    Call<ArrayList<NewsResponseModel>> getNews(@Body UserRequest userRequest);
 
     @POST("api/teacher/courselist")
     Call<CourseResponseModel> getCourse(@Body UserRequest userRequest);
+
+    @POST("api/teacher/courseHomeworkList")
+    Call<HomeWorkListPojoModel> getHomeWorkList(@Body UserRequest userRequest);
+
+    @POST("api/teacher/submittedhomeworklist")
+    Call<SubmittedHomeWorkResponseModel> getHomeWorkSubmittedList(@Body UserRequest userRequest);
 
 }

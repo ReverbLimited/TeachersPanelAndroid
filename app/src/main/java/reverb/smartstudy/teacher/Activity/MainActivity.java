@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_white_24dp);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabUnselected(TabLayout.Tab tab) {
                 switch (tab.getPosition()){
                     case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_white_24dp);
+                        tabLayout.getTabAt(0).setIcon(R.drawable.house_outline);
                         break;
                     case 1:
                         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_search);

@@ -124,7 +124,7 @@
                         <!--android:layout_width="0dp"-->
                         <!--android:layout_weight="5"-->
                         <!--android:layout_height="match_parent"-->
-                        <!--android:text="News"-->
+                        <!--android:teNewsResponseModelNews"-->
                         <!--android:textSize="25sp"-->
                         <!--android:textColor="@color/colorBlack"-->
                         <!--android:gravity="center_vertical"-->

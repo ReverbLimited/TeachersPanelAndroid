@@ -8,6 +8,14 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="reverb.smartstudy.teacher.Activity.homeWork.Activity.CourseListActivity">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorWhite"
+        app:title="Course List"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolbarColoredBackArrow"/>
 
 
     <LinearLayout
@@ -15,34 +23,31 @@
         android:layout_height="match_parent"
         android:layout_weight="0.09"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         >
 
-        <TextView
-            android:id="@+id/tvCourses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/standard_padding"
-            android:text="Courses"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/devisgrey"
-            android:textStyle="bold"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tvCourses"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="@dimen/standard_padding"-->
+            <!--android:text="Courses"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:textColor="@color/devisgrey"-->
+            <!--android:textStyle="bold"/>-->
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:background="#000000"/>
+        <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="1dip"-->
+            <!--android:background="#000000"/>-->
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/coursesRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="10dp">
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16sp">
 
 
         </android.support.v7.widget.RecyclerView>

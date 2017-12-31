@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:text="No Home Work Assign"
         android:textColor="@android:color/holo_red_light"/>
 
@@ -21,60 +21,75 @@
         android:layout_height="match_parent"
         android:layout_weight="0.09"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         >
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:title="Home Work List"
+            app:titleTextColor="@color/colorWhite"/>
+
+
         <TextView
-            android:id="@+id/courseTitleTV"
-            android:layout_width="wrap_content"
+            android:id="@+id/hwCourseNameTV"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="@dimen/standard_padding"
-            android:text="Home Work List"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/devisgrey"
-            android:textStyle="bold"/>
+            android:gravity="center"
+            android:text="Course Name"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"/>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:background="#000000"/>
+        <TextView
+            android:id="@+id/hwCourseSectionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Section Name"
+            android:textColor="@color/colorGrey"
+            android:textSize="14sp"/>
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/homeWorkListRV"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="10dp">
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="@color/colorGrey"/>
 
 
-        </android.support.v7.widget.RecyclerView>
 
-        <ImageView
-            android:id="@+id/nodataImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/homeWorkListRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="4dp">
 
-            android:layout_centerInParent="true"
 
-            android:layout_centerVertical="true"
-            android:src="@drawable/nodata"
-            android:visibility="invisible"/>
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/noserver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:layout_centerInParent="true"
-
-            android:layout_centerVertical="true"
-            android:src="@drawable/noserver"
-            android:visibility="invisible"/>
     </LinearLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addHomeWorkFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_white_24dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/homeWorkListRV"
+        app:layout_anchorGravity="bottom|right|end"/>
 
-</android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>
