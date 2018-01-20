@@ -18,12 +18,12 @@ import android.widget.TextView;
 
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
-import reverb.smartstudy.teacher.Activity.homeWork.Adapter.CustomCourseListRecyclerViewAdapter;
 import reverb.smartstudy.teacher.Activity.homeWork.Adapter.CustomHomeWorkListRecyclerViewAdapter;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
 import reverb.smartstudy.teacher.database.HomeWorkListTableItems;
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
+import reverb.smartstudy.teacher.preference.SharedPref;
 
 public class HomeWorkListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -60,9 +60,9 @@ public class HomeWorkListActivity extends AppCompatActivity implements LoaderMan
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        hwCourseNameTV.setText( getIntent().getStringExtra( "courseName" ) );
+        hwCourseNameTV.setText( SharedPref.getInstance( this ).getCourseName() );
         hwCourseSectionTV.setText( getIntent().getStringExtra( "courseSection" ) );
-        courseID = getIntent().getStringExtra( "courseID" );
+        courseID = SharedPref.getInstance( this ).getCourseId();
 
         getSupportLoaderManager().restartLoader(0, null, HomeWorkListActivity.this);
 
@@ -80,7 +80,8 @@ public class HomeWorkListActivity extends AppCompatActivity implements LoaderMan
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case 0:
-                return new CursorLoader(this, RequestProvider.urlForHomeWorkListItems(offset * page), null, HomeWorkListTableItems.HW_COURSE_ID +"=?", new String[]{courseID}, null);
+                return new CursorLoader(this, RequestProvider.urlForHomeWorkListItems(offset * page),
+                        null, HomeWorkListTableItems.HW_COURSE_ID +"=?", new String[]{courseID}, null);
 
             default:
                 throw new IllegalArgumentException("no id handled!");

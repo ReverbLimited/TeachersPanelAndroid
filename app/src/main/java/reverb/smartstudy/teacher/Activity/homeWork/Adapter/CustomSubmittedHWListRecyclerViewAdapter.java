@@ -10,7 +10,7 @@ import com.example.mdjahirulislam.youtubestyletabs.R;
 
 import java.util.ArrayList;
 import reverb.smartstudy.teacher.ViewHolder.SubmittedHWViewHolder;
-import reverb.smartstudy.teacher.model.SubmittedHomeWorkResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.SubmittedHomeWorkResponseModel;
 
 /**
  * Created by mdjahirulislam on 30/12/17.

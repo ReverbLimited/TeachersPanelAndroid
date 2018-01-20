@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="reverb.smartstudy.teacher.Activity.attendance.CourseOperationActivity">
+    tools:context="reverb.smartstudy.teacher.Activity.attendance.activity.CourseOperationActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/attendanceToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorWhite"
+        app:title="Students List"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolbarColoredBackArrow"/>
 
-</android.support.constraint.ConstraintLayout>
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bloodAppBar"
+        android:layout_below="@+id/attendanceToolBar">
+        <View
+            android:id="@+id/underlineView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/image_circle_shape"
+            android:layout_below="@+id/attendanceToolBar"/>
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/attendanceTabs"
+            app:tabTextColor="@color/colorBlack"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabIndicatorHeight="2dp"
+            style="@style/MyTabLayout">
+
+        </android.support.design.widget.TabLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/attendanceViewPager"
+        android:layout_below="@+id/bloodAppBar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </android.support.v4.view.ViewPager>
+
+
+</RelativeLayout>

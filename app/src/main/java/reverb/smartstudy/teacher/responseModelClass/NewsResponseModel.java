@@ -1,4 +1,4 @@
-package reverb.smartstudy.teacher.model;
+package reverb.smartstudy.teacher.responseModelClass;
 
 
 

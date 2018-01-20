@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import reverb.smartstudy.teacher.Activity.AttendanceActivity;
-import reverb.smartstudy.teacher.Activity.attendance.CoursesListActivity;
 import reverb.smartstudy.teacher.Activity.classTime.ClassTimeHomeActivity;
 import reverb.smartstudy.teacher.Activity.homeWork.Activity.CourseListActivity;
 import reverb.smartstudy.teacher.Activity.news.NewsActivity;

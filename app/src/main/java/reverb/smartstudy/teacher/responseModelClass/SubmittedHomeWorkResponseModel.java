@@ -1,4 +1,4 @@
-package reverb.smartstudy.teacher.model;
+package reverb.smartstudy.teacher.responseModelClass;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

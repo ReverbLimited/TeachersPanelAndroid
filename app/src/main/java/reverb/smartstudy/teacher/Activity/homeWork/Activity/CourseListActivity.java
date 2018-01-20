@@ -1,7 +1,6 @@
 package reverb.smartstudy.teacher.Activity.homeWork.Activity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
@@ -24,13 +22,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import reverb.smartstudy.teacher.Activity.homeWork.Adapter.CustomCourseListRecyclerViewAdapter;
-import reverb.smartstudy.teacher.Adapter.RecyclerTouchListener;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
-import reverb.smartstudy.teacher.database.NewsTableItems;
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
-import reverb.smartstudy.teacher.model.CourseResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.CourseResponseModel;
 import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.preference.SharedPref;
 import reverb.smartstudy.teacher.staticclasses.Functions;
@@ -63,6 +59,7 @@ public class CourseListActivity extends AppCompatActivity implements LoaderManag
 //        c1=this;
 
         from = getIntent().getIntExtra( "from",0 );
+        Log.d( TAG, "onCreate: from---> " + from);
         connectionApi = Functions.getRetrofit().create(ConnectionApi.class);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new CustomCourseListRecyclerViewAdapter(this, null, from);

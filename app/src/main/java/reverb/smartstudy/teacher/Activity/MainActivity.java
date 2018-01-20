@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,11 +31,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import reverb.smartstudy.teacher.Adapter.PagerAdapter;
+import reverb.smartstudy.teacher.preference.SchoolPref;
+import reverb.smartstudy.teacher.preference.SharedPref;
+import reverb.smartstudy.teacher.staticclasses.Functions;
+
 import com.example.mdjahirulislam.youtubestyletabs.R;
 import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,6 +63,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(SchoolPref.getInstance(getApplicationContext()).getSchoolbaseurl()!=null){
+            validateActivation();
+        } else if(SharedPref.getInstance(getApplicationContext()).getRole()!=null) {
+            validateLogin();
+        }
+
+        try {
+            String checkLoginStatus = SharedPref.getInstance( getApplicationContext() ).getLoggedIn();
+            int checkTimeDifferenceLastUsage = Functions.timeDifference( SharedPref.getInstance( getApplicationContext() ).getLastUsage() );
+            Log.d( "checkLoginStatus", checkLoginStatus );
+            Log.d( "checkTimeDiff", String.valueOf( checkTimeDifferenceLastUsage ) );
+            if (Functions.timeDifference( SharedPref.getInstance( getApplicationContext() ).getLastUsage() ) >= 1 && SharedPref.getInstance( getApplicationContext() ).getLoggedIn().equals( "true" ))
+//                TastyToast.makeText( this, "Welcome Back, " + SharedPref.getInstance( getApplicationContext() ).getName() + "!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS );
+                Toast.makeText( this, "Welcome Back, " + SharedPref.getInstance( getApplicationContext() ).getName() + "!", Toast.LENGTH_SHORT ).show();
+            SharedPref.getInstance( getApplicationContext() ).setLastUssage( Calendar.getInstance().getTimeInMillis() );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//We only access following function, when device token has changed or for first initial setup.
+//        if (!SchoolPref.getInstance( getApplicationContext() ).getWebAppurl().isEmpty()) {
+//            if (SharedPref.getInstance( getApplicationContext() ).getTokenChange().equals( "true" ) || SharedPref.getInstance( getApplicationContext() ).getTokenSetup().equals( "false" )) {
+//
+//                //TokenChange ke false kora hoise registerToken function e, jate majhe token thikmoto set na holeo false hye na jai
+//                //Token Registration
+//                String token = SharedPref.getInstance( getApplicationContext() ).getToken();
+//                if (token.isEmpty())
+//                    token = FirebaseInstanceId.getInstance().getToken();
+//                String userid = SharedPref.getInstance( getApplicationContext() ).getUserid();
+//                String role = SharedPref.getInstance( getApplicationContext() ).getRole();
+//                String deviceid = Settings.Secure.getString( context.getContentResolver(),
+//                        Settings.Secure.ANDROID_ID );
+//                String a = SchoolPref.getInstance( getApplicationContext() ).getWebAppurl();
+//                registerTokenc( token, userid, role, deviceid, getApplicationContext() );
+//
+//            }
+//        }
 
         relativeLayout = (RelativeLayout) findViewById(R.id.mainLayoutRL);
         toolbar = (Toolbar) findViewById(R.id.toolbarMain);
@@ -375,6 +419,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void validateLogin() {
+
+
+        String mode=SharedPref.getInstance(getApplicationContext()).getRole();
+        //If mode is actually not empty, then it is either student or gurdian. Otherwise, no logged in information
+        if(!mode.isEmpty()&&mode!=null){
+
+        }else{
+            Intent in = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(in);
+        }
+
+    }
+
+    public void validateActivation() {
+
+
+        String baseurl=SchoolPref.getInstance(getApplicationContext()).getSchoolbaseurl();
+        //If mode is actually not empty, then it is either student or gurdian. Otherwise, no logged in information
+        if(!baseurl.isEmpty()&&baseurl!=null){
+
+        }else{
+            Intent in = new Intent(MainActivity.this, ActivationActivity.class);
+            startActivity(in);
+
+
+        }
+
     }
 }
 

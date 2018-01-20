@@ -3,6 +3,7 @@ package reverb.smartstudy.teacher.preference;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SharedPref {
     private static SharedPref sharedPref = new SharedPref();
@@ -19,6 +20,12 @@ public class SharedPref {
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
     private static final String LAST_USAGE = "lastusage";
     private static final String LOGGED_IN= "loggedin";
+
+
+    private static final String COURSE_NAME= "course_name";
+    private static final String COURSE_ID= "course_id";
+
+
 
     private SharedPref() {} //prevent creating multiple instances by making the constructor private
 
@@ -60,6 +67,29 @@ public class SharedPref {
         //return sharedPreferences.getString(PASSWORD_, "");
         return "123456"; //keep it like this until login panel will be implemented
     }
+
+
+    public void setCourseName(String courseName) {
+        editor.putString(COURSE_NAME, courseName);
+        editor.commit();
+    }
+
+    public String getCourseName() {
+        return sharedPreferences.getString(COURSE_NAME, "No Course Name Found");
+    }
+
+    public void setCourseID(String courseID) {
+        Log.d( "pre", "setCourseID: "+courseID );
+        editor.putString(COURSE_ID, courseID);
+        editor.commit();
+    }
+
+    public String getCourseId() {
+        Log.d( "pre", "setCourseID: "+sharedPreferences.getString(COURSE_ID, "null") );
+        return sharedPreferences.getString(COURSE_ID, "null");
+    }
+
+
 
     //Role
     public void setRole(String role) {
@@ -138,6 +168,8 @@ public class SharedPref {
         editor.putString(PLACE_OBJ, placeObjStr);
         editor.commit();
     }
+
+
 
     public String getPlaceObj() {
         return sharedPreferences.getString(PLACE_OBJ, "");

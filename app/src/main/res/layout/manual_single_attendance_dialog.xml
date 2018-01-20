@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        android:text="Manual Attendance"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/insertDialogAttendanceStudentNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Name: Md. Jahirul Islam Remon"
+        android:textColor="@color/colorBlack"
+        android:gravity="left"
+        android:paddingStart="16dp"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:textStyle="normal"/>
+    <TextView
+        android:id="@+id/insertDialogAttendanceStudentRollTV"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Roll:    10001"
+        android:textColor="@color/colorBlack"
+        android:gravity="left"
+        android:paddingLeft="16dp"
+        android:textSize="16sp"
+        android:textStyle="normal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+
+
+        <CheckBox
+            android:id="@+id/dialogPresentCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:text="Present"/>
+
+        <CheckBox
+            android:id="@+id/dialogAbsentCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:checked="true"
+            android:textSize="16sp"
+            android:text="Absent"/>
+
+
+
+        <CheckBox
+            android:id="@+id/dialogLateCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:text="Late"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="26dp"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/insertDialogAttendanceCancelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:textSize="16sp"/>
+        <Button
+            android:id="@+id/insertDialogAttendanceOkBTN"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:text="Ok"
+            android:textAllCaps="false"
+            android:background="@drawable/present_student_shape"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+</LinearLayout>

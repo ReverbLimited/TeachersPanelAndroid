@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -23,11 +25,12 @@ import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.database.HomeWorkListTableItems;
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
-import reverb.smartstudy.teacher.model.HomeWorkListPojoModel;
+import reverb.smartstudy.teacher.responseModelClass.HomeWorkListPojoModel;
 import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.preference.SharedPref;
 import reverb.smartstudy.teacher.staticclasses.Functions;
-import reverb.smartstudy.teacher.thread.CourseWiseThread;
+import reverb.smartstudy.teacher.thread.CourseWiseScheduleWithAttendanceThread;
+import reverb.smartstudy.teacher.thread.CourseWiseStudentAttendanceThread;
 
 /**
  * Created by mdjahirulislam on 25/11/17.
@@ -39,17 +42,19 @@ public class CourseListViewHolder extends RecyclerView.ViewHolder {
     private String courseName;
     private String courseSection;
     private String courseID;
-    public TextView nameTV;
+    private TextView nameTV;
     private TextView sectionTV;
     private Context context;
     private int from;
     private ConnectionApi connectionApi;
+    private Handler handler;
 
 
     public CourseListViewHolder(View itemView, final int from) {
         super( itemView );
 
         this.from = from;
+        Log.d( TAG, "CourseListViewHolder: from--> "+ from );
         context = itemView.getContext();
         nameTV = (TextView) itemView.findViewById( R.id.tvCourseName );
         sectionTV = (TextView) itemView.findViewById( R.id.tvCourseSection );
@@ -61,14 +66,32 @@ public class CourseListViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 Log.d( "hi", "Element " + getPosition() + " clicked. " + courseName + "ID is " + courseID );
 
-                if (from == 2){
+
+                SharedPref.getInstance( context ).setCourseName( courseName );
+                SharedPref.getInstance( context ).setCourseID( courseID );
+//                from = 2 means courseList to go Attendance Panel
+//                from = 3 means courseList to go HomeWork Panel
+
+                if (from == 0){
+
+                    Toast.makeText( context, "Please Check from value", Toast.LENGTH_SHORT ).show();
+                    Log.d( TAG, "onClick: Please Check from value");
+
+                } else if (from == 2){
+
+//                    handler=new Handler( Looper.getMainLooper());
 
                     Toast.makeText( context, "Call Thread", Toast.LENGTH_SHORT ).show();
-                    CourseWiseThread courseWiseThread = new CourseWiseThread( context,courseName,courseSection,courseID );
-                    courseWiseThread.start();
+                    CourseWiseStudentAttendanceThread courseWiseStudentAttendanceThread = new CourseWiseStudentAttendanceThread( context,courseSection );
+                    courseWiseStudentAttendanceThread.start();
+                    courseWiseStudentAttendanceThread.progressDialog.setMessage( "Updating....." );
+                    courseWiseStudentAttendanceThread.showDialog();
 
+                    CourseWiseScheduleWithAttendanceThread courseWiseScheduleWithAttendanceThread = new CourseWiseScheduleWithAttendanceThread( context );
+                    courseWiseScheduleWithAttendanceThread.start();
                 } else if (from == 3 ) {
                     addHomeWorkByCourseId( courseID );
+                    Log.d( TAG, "onClick: from else ---->" + from);
                 }
 
 
@@ -133,9 +156,9 @@ public class CourseListViewHolder extends RecyclerView.ViewHolder {
                             Log.d( TAG, "onResponse: Home Work Not Assign" );
                         }
                         Intent myIntent = new Intent( context, HomeWorkListActivity.class );
-                        myIntent.putExtra( "courseName", courseName );
+//                        myIntent.putExtra( "courseName", courseName );
                         myIntent.putExtra( "courseSection", courseSection );
-                        myIntent.putExtra( "courseID", courseID );
+//                        myIntent.putExtra( "courseID", courseID );
 //                        myIntent.putExtra("noData", noData[0]);
                         context.startActivity( myIntent );
 
@@ -159,9 +182,9 @@ public class CourseListViewHolder extends RecyclerView.ViewHolder {
 //                noData[0] = "1";
 
                 Intent myIntent = new Intent( context, HomeWorkListActivity.class );
-                myIntent.putExtra( "courseName", courseName );
+//                myIntent.putExtra( "courseName", courseName );
                 myIntent.putExtra( "courseSection", courseSection );
-                myIntent.putExtra( "courseID", courseID );
+//                myIntent.putExtra( "courseID", courseID );
 //                myIntent.putExtra("noData", noData[0]);
                 context.startActivity( myIntent );
 

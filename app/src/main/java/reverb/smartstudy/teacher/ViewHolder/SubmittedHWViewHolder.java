@@ -1,17 +1,14 @@
 package reverb.smartstudy.teacher.ViewHolder;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import reverb.smartstudy.teacher.database.HomeWorkListTableItems;
-import reverb.smartstudy.teacher.model.SubmittedHomeWorkResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.SubmittedHomeWorkResponseModel;
 
 /**
  * Created by mdjahirulislam on 30/12/17.

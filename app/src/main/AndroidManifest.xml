@@ -23,14 +23,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name="reverb.smartstudy.teacher.Activity.WelcomeActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"
+                    />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name="reverb.smartstudy.teacher.Activity.LoginActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity android:name="reverb.smartstudy.teacher.Activity.ActivationActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.NoActionBar"
+            />
+
+
         <activity
             android:name="reverb.smartstudy.teacher.Activity.MainActivity"
             android:label="Smart Study">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name="reverb.smartstudy.teacher.Activity.StudentsAttendanceListActivity"
@@ -82,9 +107,11 @@
         </activity>
         <activity android:name="reverb.smartstudy.teacher.Activity.homeWork.Activity.HomeWorkDetailsActivity">
         </activity>
-        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.CoursesListActivity">
+        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.activity.CourseOperationActivity">
         </activity>
-        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.CourseOperationActivity">
+        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.activity.ManualAttendanceListActivity">
+        </activity>
+        <activity android:name="reverb.smartstudy.teacher.Activity.attendance.activity.ManualAttendanceInsertListActivity">
         </activity>
     </application>
 

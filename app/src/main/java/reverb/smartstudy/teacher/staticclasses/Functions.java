@@ -95,6 +95,26 @@ public class Functions {
         return convetDateFormat.format(date);
     }
 
+    public static String convertTimeInHMS(String inputTime) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a");
+
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(inputTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        if (date == null) {
+            return "";
+        }
+
+        SimpleDateFormat convetDateFormat = new SimpleDateFormat("hh:mm:ss");
+
+        return convetDateFormat.format(date);
+    }
+
     public static int timeDifference(long datetime) throws ParseException {
         long differenceInMillis = Calendar.getInstance().getTimeInMillis() - datetime;
         long differenceInHours = (differenceInMillis) / 1000L / 60L / 60L; // Divide by millis/sec, secs/min, mins/hr

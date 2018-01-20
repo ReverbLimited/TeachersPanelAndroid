@@ -19,7 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import reverb.smartstudy.teacher.Activity.homeWork.Adapter.CustomSubmittedHWListRecyclerViewAdapter;
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
-import reverb.smartstudy.teacher.model.SubmittedHomeWorkResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.SubmittedHomeWorkResponseModel;
 import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.preference.SharedPref;
 import reverb.smartstudy.teacher.staticclasses.Functions;

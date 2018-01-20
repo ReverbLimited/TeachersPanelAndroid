@@ -28,7 +28,7 @@ import reverb.smartstudy.teacher.Adapter.CustomCursorRecyclerViewAdapter;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CustomSqliteOpenHelper;
 import reverb.smartstudy.teacher.database.NewsTableItems;
-import reverb.smartstudy.teacher.model.NewsResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.NewsResponseModel;
 import reverb.smartstudy.teacher.preference.SharedPref;
 
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;

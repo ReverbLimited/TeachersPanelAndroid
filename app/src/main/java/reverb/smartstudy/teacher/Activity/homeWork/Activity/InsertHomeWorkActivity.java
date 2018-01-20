@@ -22,21 +22,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mdjahirulislam.youtubestyletabs.R;
-import com.gun0912.tedpicker.ImagePickerActivity;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import reverb.smartstudy.teacher.Activity.PresentationActivity;
 import reverb.smartstudy.teacher.contentprovider.RequestProvider;
 import reverb.smartstudy.teacher.database.CourseTableItems;
 import reverb.smartstudy.teacher.interfaces.ConnectionApi;
-import reverb.smartstudy.teacher.model.CourseResponseModel;
+import reverb.smartstudy.teacher.responseModelClass.CourseResponseModel;
 import reverb.smartstudy.teacher.model.UserRequest;
 import reverb.smartstudy.teacher.preference.SharedPref;
 import reverb.smartstudy.teacher.staticclasses.Functions;
