@@ -52,6 +52,7 @@ dependencies {
     compile 'com.itextpdf:itextg:5.5.9'
     compile 'com.balysv:material-ripple:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
     compile('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
         transitive = true
     }

@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by HP on 9/30/2017.
@@ -11,6 +15,24 @@ import java.util.Date;
 
 public class Functions {
 
+    public static String BASE_URL = "http://smartstudy.com.bd/demo/";
+
+    public static Retrofit getRetrofit() {
+
+        return new Retrofit.Builder()
+                .baseUrl(Functions.BASE_URL)
+                .addConverterFactory( GsonConverterFactory.create())
+                .build();
+    }
+
+    public static boolean isSamsung()
+    {
+        String manufacturer = android.os.Build.MANUFACTURER;
+        if (manufacturer.toLowerCase( Locale.ENGLISH).contains("samsung"))
+            return true;
+        else
+            return false;
+    }
 
 
     public static String convertTimeStamp(String inputDate) {
@@ -69,6 +91,26 @@ public class Functions {
         }
 
         SimpleDateFormat convetDateFormat = new SimpleDateFormat("hh:mm a");
+
+        return convetDateFormat.format(date);
+    }
+
+    public static String convertTimeInHMS(String inputTime) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a");
+
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(inputTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        if (date == null) {
+            return "";
+        }
+
+        SimpleDateFormat convetDateFormat = new SimpleDateFormat("hh:mm:ss");
 
         return convetDateFormat.format(date);
     }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="3dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/singleStudentIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/student"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/singleInsertAttendanceStudentNameTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Student Name md jahirul islam"
+                    android:maxLines="1"
+                    android:gravity="left"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/singleInsertAttendanceStudentRollTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content"
+                    android:text="Roll:12785"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="-7dp">
+
+
+                <CheckBox
+                    android:id="@+id/presentCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Present"
+                    android:maxLines="1"
+                    android:clickable="true"
+                    />
+
+                <CheckBox
+                    android:id="@+id/absentCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Absent"
+                    android:checked="true"
+                    android:maxLines="1"/>
+
+                <CheckBox
+                    android:id="@+id/lateCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Late"
+                    android:maxLines="1"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrey"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+</LinearLayout>

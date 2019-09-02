@@ -31,6 +31,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import reverb.smartstudy.teacher.Adapter.FilesAdapter;
+import reverb.smartstudy.teacher.staticclasses.Functions;
+
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
 import com.gun0912.tedpicker.Config;
@@ -149,20 +151,13 @@ public class PresentationActivity extends AppCompatActivity {
         ImagePickerActivity.setConfig(config);
 
 
-        samsung = isSamsung() ;
-        Log.d( TAG,String.valueOf( isSamsung() ) );
+        samsung = Functions.isSamsung() ;
+        Log.d( TAG,String.valueOf( Functions.isSamsung() ) );
 
 
     }
 
-    public boolean isSamsung()
-    {
-        String manufacturer = android.os.Build.MANUFACTURER;
-        if (manufacturer.toLowerCase( Locale.ENGLISH).contains("samsung"))
-            return true;
-        else
-            return false;
-    }
+
 
 
     private void showPictureDialog(){

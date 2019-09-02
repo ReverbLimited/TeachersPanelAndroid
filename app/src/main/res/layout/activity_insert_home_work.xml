@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="reverb.smartstudy.teacher.Activity.homeWork.Activity.InsertHomeWorkActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/courseTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/standard_padding"
+            android:text="Insert Home Work "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/devisgrey"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000"
+            android:layout_marginBottom="20dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home Work Title*"/>
+
+        <EditText
+            android:id="@+id/homeWorkTitleET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home Work Task"/>
+
+        <EditText
+            android:id="@+id/homeWorkTaskET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write your home work task"
+            />
+
+        <Button
+            android:id="@+id/chooseFileBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose File (Optional)"
+            android:onClick="chooseFile"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/deadLineBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deadline*"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/homeWorkInsertBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:onClick="addHomeWork"
+            android:textAllCaps="false"/>
+
+
+    </LinearLayout>
+</LinearLayout>

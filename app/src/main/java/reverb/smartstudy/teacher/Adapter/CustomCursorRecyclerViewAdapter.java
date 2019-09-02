@@ -7,12 +7,13 @@ package reverb.smartstudy.teacher.Adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.mdjahirulislam.youtubestyletabs.R;
 
-import reverb.smartstudy.teacher.ui.CustomViewHolder;
+import reverb.smartstudy.teacher.ViewHolder.CustomViewHolder;
 
 
 /**
@@ -40,6 +41,7 @@ public class CustomCursorRecyclerViewAdapter extends CursorRecyclerViewAdapter {
         CustomViewHolder holder = (CustomViewHolder) viewHolder;
         cursor.moveToPosition(cursor.getPosition());
         holder.setData(cursor);
+        Log.d( "CustomCursor","CustomCursorRecyclerViewAdapter ----> "+String.valueOf( cursor.getColumnCount() ) );
 
     }
 
